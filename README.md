@@ -1,7 +1,7 @@
 # saber-s-stl
 ## STL六大组件
 名称|功能
-:--:|:--：
+:--:|:--:
 容器（containers）|类似于一种class template，适用于各种数据结构，如vector,list,deque,set,map等
 算法（algorithms）|各种常用算法sort,search,copy等，是一种function template
 迭代器（iterators）|所谓“泛型指针”，是容器和算法的胶合剂
