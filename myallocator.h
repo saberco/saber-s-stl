@@ -3,6 +3,8 @@
 #include<new>
 #include<iostream>
 
+
+namespace saberstl{
 //第一级配置器
 typedef void(*MALLOCALLOC)();           //将void (*)()   重命名成MALLOCALLOC
 template<int inst>
@@ -83,6 +85,8 @@ public:
        static void* Allocate(size_t n);      //n要大于0
        static void DeAllocate(void *p,size_t n);        //n要不等于0
 };
+
+/************类外定义静态******************/
 template<bool threads,int inst>
 char* _DefaultAllocTemplate<threads,inst>::_startFree = 0;        //内存池的头指针
 template<bool threads, int inst>
@@ -216,7 +220,7 @@ char* _DefaultAllocTemplate<threads, inst>::_chunkAlloc(size_t size, int& nobjs)
               return _chunkAlloc(size, nobjs);             //内存池开辟好的话，就再调一次chunk分配内存
        }
 }
- 
+//初始化
 typedef _DefaultAllocTemplate<0,0>  default_alloc;
-
+}//end namespace saberstl
 #endif
