@@ -221,6 +221,30 @@ char* _DefaultAllocTemplate<threads, inst>::_chunkAlloc(size_t size, int& nobjs)
        }
 }
 //初始化
-typedef _DefaultAllocTemplate<0,0>  default_alloc;
+//typedef _DefaultAllocTemplate<0,0>  default_alloc;
+typedef _DefaultAllocTemplate<0,0>  alloc;
+
+//配置器的接口
+template<class T, class Alloc>
+class simple_alloc {
+public:
+       static T *allocate(size_t n){
+              return 0 == n ? 0 : (T*)Alloc::Allocate(n * sizeof(T));
+       }
+       static T *allocate(void){
+              return (T*)Alloc::Allocate(sizeof(T));
+       }
+       static void deallocate(T*p, size_t n){
+              if (0 != n)Alloc::DeAllocate(p, n * sizeof(T));
+       }
+       static void deallocate(T*p){
+              Alloc::DeAllocate(p,sizeof(T));
+       }
+};
+
+
+
+
+
 }//end namespace saberstl
 #endif
