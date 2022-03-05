@@ -1,8 +1,19 @@
 #include<new>
 #include<iostream>
 #include"my_vector.h"
+#include"my_list.h"
 using namespace saberstl;
 using namespace std;
+
+void test_vector();//测试vector
+void test_list();//测试list
+
+
+int main(){
+    test_list();
+    return 0;
+}
+
 
 void test_vector(){
     int i;
@@ -39,8 +50,8 @@ void test_vector(){
     cout<<"capacity = " <<iv.capacity()<<endl;
 }
 
-
-int main(){
-    test_vector();
-    return 0;
+void test_list(){
+    list<int> ilist;
+    ilist.push_back(2);
+    cout<<"node = " << ilist.begin()<<endl;
 }
